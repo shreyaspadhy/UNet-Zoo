@@ -4,16 +4,20 @@ A collection of UNet and hybrid architectures for 2D and 3D Biomedical Image seg
 This repository contains a collection of architectures used for Biomedical Image Segmentation, implemented on the BraTS Brain Tumor Segmentation Challenge Dataset. The following architectures are implemented
 
 1. **UNet** - Standard UNet architecture as described in the Ronneberger et al 2015 paper [[reference]](https://arxiv.org/abs/1505.04597)
+<p align="center">
+<img src="unet.png" width="500">
+</p>
+
 1. **Small UNet** - 40x smaller version of UNet that achieves similar performance [[Theano Implementation]](https://github.com/codedecde/Luna2016-Lung-Nodule-Detection)
-<center>
-<img src="unet.png" width="230"><img src="smallunet.png" width="230">
-</center>
+<p align="center">
+<img src="smallunet.png" width="500">
+</p>
 
 1. **UNet with BDCLSTM** - Combining a BDC-LSTM network with UNet to encode spatial correlation for 3D segmentation [[reference]](https://arxiv.org/pdf/1609.01006.pdf)
 
-<center>
-<img src="hybridunet.png" width="350">
-</center>
+<p align="center">
+<img src="hybridunet.png" width="500">
+</p>
 
 1. **kUNet** - Combining multiple UNets for increasing heirarchial preservation of information (coming soon) [[reference]](https://arxiv.org/pdf/1701.03056.pdf)
 1. **R-UNet** - UNet with recurrent connections for another way to encode $z$-context (coming soon)
@@ -27,13 +31,13 @@ First, apply for access the BraTS Tumor dataset, and place the scans in a `Data/
 ### Some Results
 
 1. Comparisons of UNet (top) and Small UNet (bottom)
-<center>
-<img src="result_comparison.png" width="350">
-</center>
+<p align="center">
+<img src="result_comparison.png" width="500">
+</p>
 
 
 2. DICE Scores for UNet and Small UNet
 
-<center>
-<img src="dice.png" width="350">
-</center>
+<p align="center">
+<img src="dice.png" width="500">
+</p>
