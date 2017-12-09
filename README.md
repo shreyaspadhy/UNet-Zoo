@@ -5,9 +5,15 @@ This repository contains a collection of architectures used for Biomedical Image
 
 1. **UNet** - Standard UNet architecture as described in the Ronneberger et al 2015 paper [[reference]](https://arxiv.org/abs/1505.04597)
 1. **Small UNet** - 40x smaller version of UNet that achieves similar performance [[Theano Implementation]](https://github.com/codedecde/Luna2016-Lung-Nodule-Detection)
-![IMAGE](smallunet.png)
+<center>
+<img src="unet.png" width="230"><img src="smallunet.png" width="230">
+</center>
+
 1. **UNet with BDCLSTM** - Combining a BDC-LSTM network with UNet to encode spatial correlation for 3D segmentation [[reference]](https://arxiv.org/pdf/1609.01006.pdf)
-![IMAGE](hybridunet.png)
+
+<center>
+<img src="hybridunet.png" width="350">
+</center>
 
 1. **kUNet** - Combining multiple UNets for increasing heirarchial preservation of information (coming soon) [[reference]](https://arxiv.org/pdf/1701.03056.pdf)
 1. **R-UNet** - UNet with recurrent connections for another way to encode $z$-context (coming soon)
@@ -21,9 +27,13 @@ First, apply for access the BraTS Tumor dataset, and place the scans in a `Data/
 ### Some Results
 
 1. Comparisons of UNet (top) and Small UNet (bottom)
-![Comparisons of UNet (top) and Small UNet (bottom)](result_comparison.png)
+<center>
+<img src="result_comparison.png" width="350">
+</center>
 
 
 2. DICE Scores for UNet and Small UNet
 
-![IMAGE](dice.png)
+<center>
+<img src="dice.png" width="350">
+</center>
