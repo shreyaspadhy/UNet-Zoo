@@ -205,7 +205,7 @@ if args.train:
     torch.save(model.state_dict(), 'unet-final-{}-{}-{}'.format(args.batch_size,
                                                                 args.epochs,
                                                                 args.lr))
-else:
+elif args.load is not None:
     model.load_state_dict(torch.load(args.load))
     test(save_output=True)
     test(train_accuracy=True)

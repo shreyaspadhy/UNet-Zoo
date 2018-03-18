@@ -25,6 +25,7 @@ This repository contains a collection of architectures used for Biomedical Image
 
 First, apply for access the BraTS Tumor dataset, and place the scans in a `Data/` folder, divided into `Train` and `Test`. Feel free to modify the BraTS PyTorch dataloaders in `data.py` for your use.
 1. UNet - run `main.py`, type `--help` for information on arguments.
+	Example: `python main.py --train --cuda --data-folder "./Data/"`
 1. Small UNet - run `main_small.py`, and use `--help`
 1. BDC-LSTM - run `main_bdclstm.py` and use the weights for either your trained UNet or Small-UNet models (`--help` is your savior).
 
