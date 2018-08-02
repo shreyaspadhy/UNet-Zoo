@@ -11,33 +11,35 @@ class DICELossMultiClass(nn.Module):
         super(DICELossMultiClass, self).__init__()
 
     def forward(self, output, mask):
+        num_classes = output.size(1)
+        dice_eso = 0
+        for i in range(num_classes):
+            probs = torch.squeeze(output[:, i, :, :], 1)
+            mask = torch.squeeze(mask[:, i, :, :], 1)
 
-        probs = output[:, 1, :, :]
-        mask = torch.squeeze(mask, 1)
+            num = probs * mask
+            num = torch.sum(num, 2)
+            num = torch.sum(num, 1)
 
-        num = probs * mask
-        num = torch.sum(num, 2)
-        num = torch.sum(num, 1)
+            # print( num )
 
-        # print( num )
+            den1 = probs * probs
+            # print(den1.size())
+            den1 = torch.sum(den1, 2)
+            den1 = torch.sum(den1, 1)
 
-        den1 = probs * probs
-        # print(den1.size())
-        den1 = torch.sum(den1, 2)
-        den1 = torch.sum(den1, 1)
+            # print(den1.size())
 
-        # print(den1.size())
+            den2 = mask * mask
+            # print(den2.size())
+            den2 = torch.sum(den2, 2)
+            den2 = torch.sum(den2, 1)
 
-        den2 = mask * mask
-        # print(den2.size())
-        den2 = torch.sum(den2, 2)
-        den2 = torch.sum(den2, 1)
-
-        # print(den2.size())
-        eps = 0.0000001
-        dice = 2 * ((num + eps) / (den1 + den2 + eps))
-        # dice_eso = dice[:, 1:]
-        dice_eso = dice
+            # print(den2.size())
+            eps = 0.0000001
+            dice = 2 * ((num + eps) / (den1 + den2 + eps))
+            # dice_eso = dice[:, 1:]
+            dice_eso += dice
 
         loss = 1 - torch.sum(dice_eso) / dice_eso.size(0)
         return loss
@@ -57,22 +59,15 @@ class DICELoss(nn.Module):
         intersection = torch.sum(intersection, 2)
         intersection = torch.sum(intersection, 1)
 
-        # print( num )
-
         den1 = probs * probs
-        # print(den1.size())
         den1 = torch.sum(den1, 2)
         den1 = torch.sum(den1, 1)
 
-        # print(den1.size())
-
         den2 = mask * mask
-        # print(den2.size())
         den2 = torch.sum(den2, 2)
         den2 = torch.sum(den2, 1)
 
-        # print(den2.size())
-        eps = 0.0000001
+        eps = 1e-8
         dice = 2 * ((intersection + eps) / (den1 + den2 + eps))
         # dice_eso = dice[:, 1:]
         dice_eso = dice
